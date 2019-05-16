@@ -1,0 +1,24 @@
+import cv2
+import numpy
+
+
+cam = cv2.VideoCapture(0)
+
+
+while True:
+    # capture the frame image
+    _, frame = cam.read()
+
+    # image processing
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    avg = numpy.average(gray)
+    print(avg)
+
+    # display
+    cv2.imshow('original', frame)
+
+    if cv2.waitKey(1) & 0xff == ord('q'):  # press q to stop
+        break
+
+cam.release()
+cv2.destroyAllWindows()
